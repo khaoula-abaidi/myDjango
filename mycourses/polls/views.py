@@ -22,7 +22,9 @@ def index(request):
     return render(request,'polls/index.html',context)
 
 def detail(request, question_id):
-    return HttpResponse('This is the detail view question  : %s' % question_id)
+    #return HttpResponse('This is the detail view question  : %s' % question_id)
+    question = Question.objects.get(pk = question_id[:1])
+    return render(request,'polls/detail.html',{'question': question})
 
 def results(request, question_id):
     return HttpResponse('These are the results : %s' % question_id)
