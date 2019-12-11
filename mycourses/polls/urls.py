@@ -11,8 +11,9 @@ urlpatterns = [
     #url(r'^(?P<question_id>[0-9]+/$)',views.detail, name= "detail"),
     path('<question_id>/', views.detail, name = "detail"),
     # 127.0.0.1:8000/1/results
-    url(r'^(?P<question_id>[0-9]+/results$)', views.results, name="results"),
-
+    #url(r'^(?P<question_id>[0-9]+/results$)', views.results, name="results"),
+    path('<question_id>/results',views.results, name ="results"),
     # 127.0.0.1:8000/1/vote
-    url(r'^(?P<question_id>[0-9]+/vote$)', views.vote, name="vote")
+    #url(r'^(?P<question_id>[0-9]+/vote$)', views.vote, name="vote"),
+    path('<question_id>/vote',views.vote, name="vote")
 ]
