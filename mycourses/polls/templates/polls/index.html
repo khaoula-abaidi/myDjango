@@ -1,16 +1,29 @@
 {% extends 'polls/base.html' %}
 {% block main_content %}
+<div class="jumbotron">
+    <div class="container">
+<h1>Choose a question </h1>
+<p>It's the list of our questions that you are able to vote , Go ahead</p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+    </div>
+</div>
+ <div class="container">
 {% if latest_questions %}
-    <ul>
+    <div class="row">
         {% for question in latest_questions %}
-            <li>
-                <a href="{% url 'polls:detail' question.id %}">
-                    <b>{{ question.question_text }}  </b>
-                </a>
-            </li>
+
+
+      <div class="col-md-4">
+        <h3>Question n° {{question.id}}</h3>
+        <p>{{question.question_text}} </p>
+        <p><a class="btn btn-secondary" href="{% url 'polls:detail' question.id %}"
+              role="button">View details </a>
+        </p>
+      </div>
         {% endfor %}
-    </ul>
+    </div>
  {% else %}}
     <p>You don't have any questions yet !</p>
 {% endif %}
+ </div>
 {% endblock %}

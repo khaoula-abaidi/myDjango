@@ -1,5 +1,7 @@
 {% extends 'polls/base.html' %}
 {% block main_content %}
+<div class="jumbotron">
+<div class="container">
  <h1>{{question.question_text}}</h1>
 {% if error_message %}
 <p>
@@ -9,11 +11,14 @@
 <form action="{% url 'polls:results' question.id %}" method = "post">
     {% csrf_token %}
     {% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{forloop.counter}}" value="choice.id"/>
-    <label for="choice{{forloop.counter}}">{{choice.choice_text}}</label>
-    <br />
+      <div class="form-check">
+    <input type="radio" class="form-check-input" name="choice" id="choice{{forloop.counter}}" value="choice.id"/>
+    <label for="choice{{forloop.counter}}"class="form-check-label">{{choice.choice_text}}</label>
+      </div>
     {% endfor %}
-    <input type="submit" value="vote" />
+    <input type="submit" class="btn btn-success" value="vote" />
 </form>
-
+<a href="{% url 'polls:index' %}" /> Back to Question list </a>
+</div>
+</div>
 {% endblock %}
